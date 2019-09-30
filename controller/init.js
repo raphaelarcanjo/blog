@@ -6,16 +6,23 @@ const loadView = (req,res)=>{
   let end = url.parse(req.url,true).pathname;
   let file = end.split('/');
 
+  let header = fs.readFileSync('./view/assets/header.html','utf8');
+  let footer = '';
+  let css = fs.readFileSync('./view/assets/css/style.html');
+  let js = fs.readFileSync('./view/assets/js/script.html');
+
   if(end == '/'){
     fs.readFile('./view/home.html','utf8',(err,data)=>{
       if(err){
-        res.writeHead(404,{'Content-Type':'text/html; charset=utf-8'});
+        res.writeHead(404,{
+          'Content-Type':'text/html; charset=utf-8'
+        });
         res.end('404 Página não encontrada');
       }
+
       else{
         res.writeHead(200,{'Content-Type':'text/html; charset=utf-8'});
-        res.write(data);
-        res.end();
+        res.end(header+data+footer+css+js);
       }
     })
   }
@@ -40,10 +47,10 @@ const loadView = (req,res)=>{
         res.writeHead(404,{'Content-Type':'text/html; charset=utf-8'});
         res.end('404 Página não encontrada');
       }
+
       else{
         res.writeHead(200,{'Content-Type':'text/html; charset=utf-8'});
-        res.write(data);
-        res.end();
+        res.end(header+data+footer+css+js);
       }
     })
   }
