@@ -56,4 +56,34 @@ const loadView = (req,res)=>{
   }
 }
 
-module.exports = {loadView};
+const staticDir = (req,res)=>{
+  let file = url.parse(req.url);
+  fs.readFile(`.${file.pathname}`,'utf8',(err,data)=>{
+    if(err){
+      res.writeHead(404,{'Content-Type':'text/html; charset=utf-8'});
+      res.end('404 Página não encontrada');
+    }
+
+    else{
+      let extension = '';
+      switch (file.extname) {
+        case 'js':
+          extension = 'text/javascript';
+          break;
+        case 'css':
+          extension = 'text/css';
+          break;
+        case 'png':
+          extension = 'image/png';
+          break;
+        case 'jpg':
+          extension = 'image/jpg';
+          break;
+      }
+      res.writeHead(200,{'Content-Type':`${extension}; charset=utf-8`});
+      res.end(file);
+    }
+  })
+}
+
+module.exports = {loadView,staticDir};
