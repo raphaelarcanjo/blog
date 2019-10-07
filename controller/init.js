@@ -8,8 +8,8 @@ const loadView = (req,res)=>{
 
   let header = fs.readFileSync('./view/assets/header.html','utf8');
   let footer = '';
-  let css = fs.readFileSync('./view/assets/css/style.html');
-  let js = fs.readFileSync('./view/assets/js/script.html');
+  // let css = fs.readFileSync('./view/assets/css/style.html');
+  // let js = fs.readFileSync('./view/assets/js/script.html');
 
   if(end == '/'){
     fs.readFile('./view/home.html','utf8',(err,data)=>{
@@ -22,7 +22,7 @@ const loadView = (req,res)=>{
 
       else{
         res.writeHead(200,{'Content-Type':'text/html; charset=utf-8'});
-        res.end(header+data+footer+css+js);
+        res.end(header+data+footer);
       }
     })
   }
@@ -50,7 +50,7 @@ const loadView = (req,res)=>{
 
       else{
         res.writeHead(200,{'Content-Type':'text/html; charset=utf-8'});
-        res.end(header+data+footer+css+js);
+        res.end(header+data+footer);
       }
     })
   }
@@ -65,23 +65,21 @@ const staticDir = (req,res)=>{
     }
 
     else{
-      let extension = '';
-      switch (file.extname) {
-        case 'js':
-          extension = 'text/javascript';
+      switch (path.extname(`.${file}`)) {
+        case '.js':
+          res.writeHead(200,{'Content-Type':'text/javascript; charset=utf-8'});
           break;
-        case 'css':
-          extension = 'text/css';
+        case '.css':
+          res.writeHead(200,{'Content-Type':'text/css; charset=utf-8'});
           break;
-        case 'png':
-          extension = 'image/png';
+        case '.png':
+          res.writeHead(200,{'Content-Type':'image/png; charset=utf-8'});
           break;
-        case 'jpg':
-          extension = 'image/jpg';
+        case '.jpg':
+          res.writeHead(200,{'Content-Type':'image/jpg; charset=utf-8'});
           break;
       }
-      res.writeHead(200,{'Content-Type':`${extension}; charset=utf-8`});
-      res.end(file);
+      res.end(data);
     }
   })
 }
