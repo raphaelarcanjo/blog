@@ -8,8 +8,6 @@ const loadView = (req,res)=>{
 
   let header = fs.readFileSync('./view/assets/header.html','utf8');
   let footer = '';
-  // let css = fs.readFileSync('./view/assets/css/style.html');
-  // let js = fs.readFileSync('./view/assets/js/script.html');
 
   if(end == '/'){
     fs.readFile('./view/home.html','utf8',(err,data)=>{

@@ -1,6 +1,8 @@
-const teste = (ind)=>{
-  let obj = {nome:'Raphael',idade:'32'};
-  return obj[ind];
+const teste = require('../model/teste_model');
+
+const login = (req,res)=>{
+  teste.getAll('users');
+  console.log(teste.result);
 }
 
-module.exports = {teste};
+module.exports = {login};
