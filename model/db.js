@@ -13,7 +13,7 @@ const state = {
   db:null
 };
 
-const connect = (cb) => {
+const connect = (cb)=>{
   if (state.db)
     cb();
   else{

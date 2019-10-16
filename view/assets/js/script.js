@@ -1,14 +1,10 @@
 window.onload = ()=>{
   document.querySelector("#ok").onclick = ()=>{
-    fetch('teste/teste/nome',{
-      method: 'get',
-      headers: {
-        'Content-Type': 'text/plain'
-      }
+    fetch('teste/login/raphael/123456',{
+      method: 'get'
     }).then((response)=>{
       return response.text();
     }).then((data)=>{
-      console.log(data);
       document.querySelector("#demo").innerHTML = data;
     })
   }
