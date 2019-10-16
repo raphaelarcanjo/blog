@@ -4,6 +4,7 @@
   "description": "blog",
   "main": "index.js",
   "dependencies": {
+    "express": "^4.17.1",
     "mongodb": "^3.3.2",
     "nodemon": "^1.19.2"
   },
