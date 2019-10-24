@@ -1,17 +1,12 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const app = express();
-app.use(bodyParser.json());
+const express = require('express')
+const bodyParser = require('body-parser')
+const app = express()
+const path = require('path')
+app.use(bodyParser.json())
+app.use(express.static('view/assets'))
 
-class Rout {
-  constructor(url) {
-    app.get(url,(req,res)=>{
-      if(dir == '/') res.sendFile(path.join(__dirname,'./view/home.html'));
-      else res.sendFile(path.join(__dirname,`./view/${url}.html`));
-    })
-  }
-}
+app.get('/',(req,res)=>{
+  res.sendFile(path.join(__dirname,'./view/home.html'))
+})
 
-app.listen(3000,()=> console.log('Servidor rodando na porta 3000'));
-
-module.exports(Rout);
+module.exports = {app}
