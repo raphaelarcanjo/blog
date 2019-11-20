@@ -7,5 +7,5 @@ const col_users = 'users'
 
 db.database.on('error',console.error.bind(console,'Erro de conexão:'))
 db.database.once('open',
-()=> router.app.listen(3000,
-()=> console.log('Servidor rodando na porta 3000')))
+    ()=> router.app.listen(3000,
+        ()=> console.log('Servidor rodando na porta 3000')))

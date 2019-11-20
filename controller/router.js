@@ -18,6 +18,7 @@ app.use(express.static('views/assets',options))
 app.get('/*',(req,res)=>{
   let url = req.path.split('/')
   let header = fs.readFileSync('./views/assets/header.html')
+  let footer = fs.readFileSync('./views/assets/footer.html')
   let page = ''
 
   if(url.length > 2) {
@@ -28,14 +29,14 @@ app.get('/*',(req,res)=>{
     }
     else controller[func]()
   }
-  else if(url[1] != '') {
+  else if(url[1] != '' && url[1] != 'favicon.ico') {
     page = fs.readFileSync('./views/'+url[1]+'.html')
-    data = header + page
+    data = header + page + footer
     res.send(data)
   }
   else{
     page = fs.readFileSync('./views/home.html')
-    data = header + page
+    data = header + page + footer
     res.send(data)
   }
 })
