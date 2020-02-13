@@ -23,6 +23,7 @@
                     <li><a href="cadastrar" title="Cadastre-se">Cadastre-se</a></li>
                     <li><a href="sobre" title="Sobre Nós">Sobre Nós</a></li>
                     <li><a href="contato" title="Contato">Contato</a></li>
+                    <% if (typeof logged == 'undefined' || !logged) { %>
                     <li id="loginForm">
                         <nav>
                             <div class="nav-wrapper teal darken-3">
@@ -45,6 +46,11 @@
                             </div>
                         </nav>
                     </li>
+                    <% } else { %>
+                    <li>
+                        <a href="/logout" class="wave-effects wave-light btn pink">Sair</a>
+                    </li>
+                    <% } %>
                 </ul>
             </div>
         </nav>
@@ -53,6 +59,7 @@
             <li><a href="cadastrar" title="Cadastre-se">Cadastre-se</a></li>
             <li><a href="sobre" title="Sobre Nós">Sobre Nós</a></li>
             <li><a href="contato" title="Contato">Contato</a></li>
+            <% if (typeof logged == 'undefined' || !logged) { %>
             <li>
                 <div class="container center">
                     <form class="" action="login" method="post">
@@ -68,6 +75,11 @@
                     </form>
                 </div>
             </li>
+            <% } else { %>
+            <li>
+                <a href="/logout" class="wave-effects wave-light btn pink">Sair</a>
+            </li>
+            <% } %>
         </ul>
 
         <%- header %>
