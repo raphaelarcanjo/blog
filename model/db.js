@@ -18,6 +18,22 @@ const userSchema = new Schema ({
     senha: String,
 })
 
-const User = mongoose.model('User', userSchema)
+const postsSchema = new Schema ({
+    usuario: String,
+    posts: {
+        post: String,
+        type: String,
+        public: Boolean
+    }
+},
+{
+    timestamps: {
+        createdAt: 'created_at',
+        updatedAt: 'updated_at'
+    }
+})
 
-module.exports = {ObjectID,database, User}
+const User = mongoose.model('User', userSchema)
+const Posts = mongoose.model('Posts', postsSchema)
+
+module.exports = {ObjectID,database, User, Posts}

@@ -1,1 +1,1 @@
-M.AutoInit()
+window.onload = () => M.AutoInit()

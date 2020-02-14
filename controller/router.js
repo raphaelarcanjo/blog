@@ -45,11 +45,14 @@ app
   .get('/conteudo/:user', (req,res) => {
     res.locals.logged = req.session.logged
     db.User.findOne({login: req.params.user}, (err, user) => {
-      if (user != '') {
-        res.locals.usuario = user.nome+' '+user.sobrenome
-        res.locals.login = user.login
-        res.locals.email = user.email
-        res.render('pages/conteudo')
+      if (user != null) {
+        db.Posts.findOne({usuario: req.params.user}, (err, pts) => {
+          res.locals.usuario = user.nome+' '+user.sobrenome
+          res.locals.login = user.login
+          res.locals.email = user.email
+          res.locals.posts = pts
+          res.render('pages/conteudo')
+        })
       }
       else res.render('pages/home', {erro: 'Blog não encontrado!'})
     })
