@@ -6,11 +6,11 @@ const Schema = mongoose.Schema
 const dbname = 'blog'
 const dburl = 'mongodb://localhost:27017/'
 
-mongoose.connect(dburl+dbname, {useNewUrlParser:true, useUnifiedTopology:true})
+mongoose.connect(dburl + dbname, { useNewUrlParser: true, useUnifiedTopology: true })
 
 const database = mongoose.connection
 
-const userSchema = new Schema ({
+const userSchema = new Schema({
     nome: String,
     sobrenome: String,
     email: String,
@@ -18,15 +18,14 @@ const userSchema = new Schema ({
     senha: String,
 })
 
-const postsSchema = new Schema ({
+const postsSchema = new Schema({
     usuario: String,
     posts: {
         post: String,
         type: String,
         public: Boolean
     }
-},
-{
+}, {
     timestamps: {
         createdAt: 'created_at',
         updatedAt: 'updated_at'
@@ -36,4 +35,4 @@ const postsSchema = new Schema ({
 const User = mongoose.model('User', userSchema)
 const Posts = mongoose.model('Posts', postsSchema)
 
-module.exports = {ObjectID,database, User, Posts}
+module.exports = { ObjectID, database, User, Posts }

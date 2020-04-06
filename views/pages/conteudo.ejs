@@ -1,37 +1,46 @@
 <%- contentFor('title') %>
-<%= usuario %>
+    <%= usuario %>
 
-<%- contentFor('header') %>
+        <%- contentFor('header') %>
 
 
-<%- contentFor('body') %>
-<h1>Bem-vindo(a) ao <span class="teal-text">Seu Blog - <%= usuario %></span></h1>
+            <%- contentFor('body') %>
+                <h1>Bem-vindo(a) ao <span class="text-info">Seu Blog - <%= usuario %></span></h1>
 
-<div id="conteudo">
-    <% if (posts != null) posts.forEach(function(post) { %>
-        <%= post %>
-    <% }) %>
-    <% if (typeof logged != 'undefined' && logged) { %>
-    <!-- Modal Trigger -->
-    <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Nova postagem</a>
+                <div id="conteudo">
+                    <% if (posts != null) posts.forEach(function(post) { %>
+                        <%= post %>
+                            <% }) %>
+                                <% if (typeof logged != 'undefined' && logged) { %>
+                                    <!-- Modal -->
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal1">Nova postagem</button>
 
-    <!-- Modal Structure -->
-    <div id="modal1" class="modal">
-        <div class="modal-content">
-            <h4>Nova Postagem</h4>
-            <form action="posts" method="post">
-                <div class="input-field">
-                    <textarea name="postagem" id="postagem" cols="30" rows="10"></textarea>
-                    <label for="postagem">Digite aqui o que está pensando:</label>
+                                    <div class="modal fade" id="modal1" tabindex="-1" role="dialog">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Nova postagem</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="posts" method="post">
+                                                        <div class="form-group">
+                                                            <textarea name="postagem" id="postagem" cols="30" rows="10" class="form-control"></textarea>
+                                                            <label for="postagem">Digite aqui o que está pensando:</label>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary" data-dismiss="modal">Salvar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <% } %>
                 </div>
-            </form>
-        </div>
-        <div class="modal-footer">
-            <button type="submit" class="btn waves-effect waves-green btn-flat">Postar</button>
-            <a href="#!" class="modal-close waves-effect waves-red btn-flat">Cancelar</a>
-        </div>
-    </div>
-    <% } %>
-</div>
 
-<%- contentFor('footer') %>
+                <%- contentFor('footer') %>

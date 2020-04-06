@@ -1,1 +1,1 @@
-window.onload = () => M.AutoInit()
+window.onload = () => {}

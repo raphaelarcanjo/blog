@@ -3,84 +3,81 @@
 
 <head>
     <meta charset="utf-8">
-    <!-- Material Icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
+
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-    <!-- Materialize compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- My CSS -->
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <title>Seu Blog - <%- title %></title>
+
+    <!-- Load polyfills to support older browsers -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es2015%2CIntersectionObserver"></script>
+
+    <!-- Load Vue followed by BootstrapVue -->
+    <script src="https://unpkg.com/vue@latest/dist/vue.min.js"></script>
+
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <!-- My JS -->
+    <script src="js/script.js"></script>
+
+    <title>Seu Blog -
+        <%- title %>
+    </title>
 </head>
 
 <body>
     <header>
-        <nav>
-            <div class="nav-wrapper">
-                <a href="/" class="brand-logo teal-text"><img src="img/logo.png" alt="Seu Blog"></a>
-                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                <ul class="right hide-on-med-and-down">
-                    <li><a href="cadastrar" title="Cadastre-se">Cadastre-se</a></li>
-                    <li><a href="sobre" title="Sobre Nós">Sobre Nós</a></li>
-                    <li><a href="contato" title="Contato">Contato</a></li>
-                    <% if (typeof logged == 'undefined' || !logged) { %>
-                    <li id="loginForm">
-                        <nav>
-                            <div class="nav-wrapper teal darken-3">
-                                <form class="right" action="/login" method="post">
-                                    <div class="row">
-                                        <div class="input-field col">
-                                            <input id="login" name="login" type="text" required>
-                                            <label for="login">login</label>
-                                        </div>
-                                        <div class="input-field col">
-                                            <input id="senha" name="senha" type="password" required>
-                                            <label for="senha">senha</label>
-                                        </div>
-                                        <div class="col">
-                                            <button type="submit"
-                                                class="wave-effects wave-light btn pink">Entrar</button>
-                                        </div>
-                                    </div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">SeuBlog</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/sobre">Sobre nós</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contato">Contato</a>
+                    </li>
+                </ul>
+                <div class="dropdown ml-auto">
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Usuário
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                        <% if (typeof logged == 'undefined' || !logged) { %>
+                            <div class="dropdown-item">
+                                <form action="/login" method="post" class="my-2 my-lg-0">
+                                    <input class="form-control my-2 my-lg-0 mr-sm-2" type="text" placeholder="Login" name="login" />
+                                    <input class="form-control my-2 my-lg-0mr-sm-2" type="password" placeholder="Senha" name="senha" />
+                                    <button class="btn btn-primary mr-sm-2" type="submit">Entrar</button>
+                                    <a href="/cadastrar" class="btn btn-secondary">Cadastre-se</a>
                                 </form>
                             </div>
-                        </nav>
-                    </li>
-                    <% } else { %>
-                    <li>
-                        <a href="/logout" class="wave-effects wave-light btn pink">Sair</a>
-                    </li>
-                    <% } %>
-                </ul>
+                            <% } else { %>
+                                <a href="/logout" class="dropdown-item btn btn-danger">Logout</a>
+                                <% } %>
+                    </div>
+                </div>
             </div>
         </nav>
-
-        <ul class="sidenav" id="mobile-demo">
-            <li><a href="cadastrar" title="Cadastre-se">Cadastre-se</a></li>
-            <li><a href="sobre" title="Sobre Nós">Sobre Nós</a></li>
-            <li><a href="contato" title="Contato">Contato</a></li>
-            <% if (typeof logged == 'undefined' || !logged) { %>
-            <li>
-                <div class="container center">
-                    <form class="" action="login" method="post">
-                        <div class="input-field">
-                            <input id="login" name="login" type="text" required>
-                            <label for="login">login</label>
-                        </div>
-                        <div class="input-field">
-                            <input id="senha" name="senha" type="password" required>
-                            <label for="senha">senha</label>
-                        </div>
-                        <button type="submit" class="wave-effects wave-light btn pink">Entrar</button>
-                    </form>
-                </div>
-            </li>
-            <% } else { %>
-            <li>
-                <a href="/logout" class="wave-effects wave-light btn pink">Sair</a>
-            </li>
-            <% } %>
-        </ul>
 
         <%- header %>
     </header>

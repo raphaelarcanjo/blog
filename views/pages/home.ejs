@@ -1,21 +1,21 @@
 <%- contentFor('title') %>
-Home
+    Home
 
-<%- contentFor('header') %>
-<% if (typeof mensagem !== 'undefined') { %>
-    <div class="card-panel green lighten-4 green-text">
-        <%= mensagem %>
-    </div>
-<% } %>
+    <%- contentFor('header') %>
+        <% if (typeof mensagem !== 'undefined') { %>
+            <div class="alert alert-success">
+                <%= mensagem %>
+            </div>
+            <% } %>
 
-<% if (typeof erro !== 'undefined') { %>
-    <div class="card-panel red lighten-4 red-text">
-        <%= erro %>
-    </div>
-<% } %>
+                <% if (typeof erro !== 'undefined') { %>
+                    <div class="alert alert-danger">
+                        <%= erro %>
+                    </div>
+                    <% } %>
 
 
-<%- contentFor('body') %>
-<h1>Bem-vindo(a) ao <span class="teal-text">Seu Blog</span></h1>
+                        <%- contentFor('body') %>
+                            <h1>Bem-vindo(a) ao <span class="text-info">Seu Blog</span></h1>
 
-<%- contentFor('footer') %>
+                            <%- contentFor('footer') %>
