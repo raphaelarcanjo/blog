@@ -65,7 +65,7 @@
                         <% if (typeof logged == 'undefined' || !logged) { %>
                             <div class="dropdown-item">
                                 <form action="/login" method="post" class="my-2 my-lg-0">
-                                    <input class="form-control my-2 my-lg-0 mr-sm-2" type="text" placeholder="Login" name="login" />
+                                    <input class="form-control my-2 my-lg-0 mr-sm-2" type="email" placeholder="E-mail" name="email" />
                                     <input class="form-control my-2 my-lg-0mr-sm-2" type="password" placeholder="Senha" name="senha" />
                                     <button class="btn btn-primary mr-sm-2" type="submit">Entrar</button>
                                     <a href="/cadastrar" class="btn btn-secondary">Cadastre-se</a>

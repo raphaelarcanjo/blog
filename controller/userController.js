@@ -4,11 +4,10 @@ const postModel = require('../model/postModel')
 const getContent = (req, res, user_id) => {
     res.locals.logged = req.session.logged
 
-    userModel.User.findOne({ login: req.params.user }, (err, user) => {
+    userModel.User.findOne(user_id, (err, user) => {
         if (user != null) {
-            postModel.Post.findOne({ usuario: req.params.user }, (err, pts) => {
+            postModel.Post.findOne({ usuario: user_id }, (err, pts) => {
                 res.locals.usuario = user.nome + ' ' + user.sobrenome
-                res.locals.login = user.login
                 res.locals.email = user.email
                 res.locals.posts = pts
                 res.render('pages/conteudo')
@@ -24,7 +23,7 @@ const logout = (req, res) => {
 }
 
 const login = (req, res) => {
-    userModel.User.findOne({ login: req.body.login.toLowerCase() }, (err, user) => {
+    userModel.User.findOne({ email: req.body.email }, (err, user) => {
         if (user != '' && req.body.senha == user.senha) {
             req.session.logged = true
             res.redirect('/conteudo/' + user.login)
@@ -38,18 +37,12 @@ const register = (req, res) => {
 }
 
 const saveUser = (req, res) => {
-    res.json({requestBody: req.body})
-    
     if (req.body.nome == '' || req.body.sobrenome == '' || req.body.email == '' || req.body.senha == '') res.render('pages/cadastrar', { erro: 'Todos os campos devem ser preenchidos!' })
-    userModel.User.findOne({ login: req.body.login.toLowerCase() }, (err, user) => {
-        if (user != '') res.render('pages/cadastrar', { erro: 'Login já cadastrado' })
-    })
     if (req.body.senha !== req.body.confirmar_senha) res.render('pages/cadastrar', { erro: 'A confirmação da senha não confere.' })
     else {
         new userModel.User({
                 nome: req.body.nome,
                 sobrenome: req.body.sobrenome,
-                login: req.body.login.toLowerCase(),
                 email: req.body.email,
                 senha: req.body.senha
             })

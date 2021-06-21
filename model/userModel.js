@@ -1,14 +1,15 @@
-const db = require('../core/database')
-const Schema = db.mongoose.Schema
+const database = require('../core/database')
+const Schema = database.mongoose.Schema
 
 const userSchema = new Schema({
     nome: String,
     sobrenome: String,
-    email: String,
-    login: String,
+    email: {type: String, unique: true},
     senha: String,
 })
 
-const User = db.mongoose.model('User', userSchema)
+const User = database.mongoose.model('User', userSchema)
 
-module.exports = User
+module.exports = {
+    User
+}

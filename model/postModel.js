@@ -1,5 +1,5 @@
-const db = require('../core/database')
-const Schema = db.mongoose.Schema
+const database = require('../core/database')
+const Schema = database.mongoose.Schema
 
 const postSchema = new Schema({
     usuario: String,
@@ -15,6 +15,8 @@ const postSchema = new Schema({
     }
 })
 
-const Post = db.mongoose.model('Post', postSchema)
+const Post = database.mongoose.model('Post', postSchema)
 
-module.exports = Post
+module.exports = {
+    Post
+}
